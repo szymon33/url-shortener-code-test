@@ -44,6 +44,10 @@ describe API::V1::HomesController do
         get :show, short_url: short_url
       end
 
+      it 'is moved permanently' do
+        expect(response.code).to eql '301'
+      end
+
       it 'is redirects back to encoded page' do
         expect(response).to redirect_to 'http://www.google.com'
       end

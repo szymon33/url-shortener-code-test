@@ -18,7 +18,7 @@ module API::V1
 
     def show
       if short_url && $link_storage[short_url]
-        redirect_to $link_storage[short_url]
+        redirect_to $link_storage[short_url], status: 301
       else
         render_not_found
       end
