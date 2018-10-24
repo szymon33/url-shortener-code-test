@@ -8,7 +8,6 @@ describe 'status route', type: :routing do
   it { is_expected.to be_routable }
   it {
     is_expected.to route_to(subdomain: 'api',
-                            format: 'json',
                             controller: 'api/v1/homes',
                             action: 'status')
   }

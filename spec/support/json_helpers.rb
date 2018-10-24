@@ -12,4 +12,8 @@ module JsonHelpers
   def api_get(path, *args)
     get "http://api.example.com/v1/#{path}", *args
   end
+
+  def api_post(path, *args)
+    post "http://api.example.com/v1/#{path}", *args
+  end
 end
