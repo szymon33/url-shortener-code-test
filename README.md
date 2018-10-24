@@ -63,3 +63,118 @@ And send us the resulting `yournamehere-url-shortener-test.bundle` file.
 This `.bundle` file can be cloned using:
 
     git bundle clone bundle-filename.bundle -b master directory-name
+
+# Url Shortener Code Test - Simon's answer
+
+## Instalation
+
+### Run
+
+```
+bundle
+```
+
+### Launch web server
+
+```
+bundle exec rails s
+```
+
+API is in subdomain so add something like
+
+```
+127.0.0.1       api.example.com 
+```
+
+to your `/etc/hosts` file
+
+## Playing with cURL
+
+### Check application status
+
+```
+curl http://api.example.com:3000/v1/status
+```
+
+```json
+{ "status": "ok" }
+```
+
+### Create new entry
+
+```
+curl http://api.example.com:3000/v1 -XPOST -d '{ "url": "http://www.farmdrop.com" }'
+```
+
+```json
+{
+  "short_url": "eNrLKCkpsNLXLy8v10tLLMpNKcov0EvOzwUAZxcItA==",
+  "url":"http://www.farmdrop.com"
+}
+```
+
+### Read existing entry
+
+```
+curl -v http://api.example.com:3000/v1/eNrLKCkpsNLXLy8v10tLLMpNKcov0EvOzwUAZxcItA==
+```
+
+```
+ TCP_NODELAY set
+* Connected to api.example.com (127.0.0.1) port 3000 (#0)
+> GET /v1/eNrLKCkpsNLXLy8v10tLLMpNKcov0EvOzwUAZxcItA== HTTP/1.1
+> Host: api.example.com:3000
+> User-Agent: curl/7.54.0
+> Accept: */*
+>
+< HTTP/1.1 301 Moved Permanently
+< X-Frame-Options: SAMEORIGIN
+< X-Xss-Protection: 1; mode=block
+< X-Content-Type-Options: nosniff
+< Location: http://www.farmdrop.com
+< Content-Type: text/html; charset=utf-8
+< Cache-Control: no-cache
+< X-Request-Id: 5e380582-0861-4157-950d-92466a2b5bfd
+< X-Runtime: 0.004463
+< Server: WEBrick/1.3.1 (Ruby/2.3.1/2016-04-26)
+< Date: Wed, 24 Oct 2018 18:55:37 GMT
+< Content-Length: 89
+< Connection: Keep-Alive
+<
+* Connection #0 to host api.example.com left intact
+```
+
+### Read not existing entry
+
+```
+curl -v http://api.example.com:3000/v1/hello
+```
+
+```
+*   Trying 127.0.0.1...
+* TCP_NODELAY set
+* Connected to api.example.com (127.0.0.1) port 3000 (#0)
+> GET /v1/hello HTTP/1.1
+> Host: api.example.com:3000
+> User-Agent: curl/7.54.0
+> Accept: */*
+>
+< HTTP/1.1 404 Not Found
+< X-Frame-Options: SAMEORIGIN
+< X-Xss-Protection: 1; mode=block
+< X-Content-Type-Options: nosniff
+< Content-Type: application/json; charset=utf-8
+< Cache-Control: no-cache
+< X-Request-Id: 50b5258c-95cb-4a62-a1d9-7825f8399128
+< X-Runtime: 0.002918
+< Server: WEBrick/1.3.1 (Ruby/2.3.1/2016-04-26)
+< Date: Wed, 24 Oct 2018 18:57:30 GMT
+< Content-Length: 21
+< Connection: Keep-Alive
+<
+* Connection #0 to host api.example.com left intact
+```
+
+## Automatic testing (TDD/BDD)
+
+I use Rspec for tests. API was developed facing TDD approach. Installed gem simplecov shows 100% coverage.
