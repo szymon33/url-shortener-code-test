@@ -178,3 +178,27 @@ curl -v http://api.example.com:3000/v1/hello
 ## Automatic testing (TDD/BDD)
 
 I use Rspec for tests. API was developed facing TDD approach. Installed gem simplecov shows 100% coverage.
+
+## Dockerize project
+
+### Build
+
+```
+docker build --add-host=api.example.com:127.0.0.1 -t szymon/farmdrop:1.0 .
+```
+
+### Run
+
+```
+docker run -p 4000:4000 szymon/farmdrop:1.0
+```
+
+### Test
+
+```
+curl http://api.example.com:4000/v1/status
+```
+
+```json
+{ "status": "ok" }
+```
