@@ -20,7 +20,7 @@ module API::V1
       if short_url && $link_storage[short_url]
         redirect_to $link_storage[short_url]
       else
-        render json: { error: 'not found' }, status: 404
+        render_not_found
       end
     end
 

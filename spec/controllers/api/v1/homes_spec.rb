@@ -59,7 +59,7 @@ describe API::V1::HomesController do
       context 'json response' do
         subject { json_response }
 
-        it { is_expected.to include(error: 'not found') }
+        it { is_expected.to include(error: 'Not Found') }
       end
     end
   end
