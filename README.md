@@ -108,21 +108,22 @@ curl http://api.example.com:3000/v1 -XPOST -d '{ "url": "http://www.farmdrop.com
 
 ```json
 {
-  "short_url": "eNrLKCkpsNLXLy8v10tLLMpNKcov0EvOzwUAZxcItA==",
-  "url":"http://www.farmdrop.com"
+  "short_url": "jb3ml7",
+  "url": "http://www.farmdrop.com"
 }
 ```
 
 ### Read existing entry
 
 ```
-curl -v http://api.example.com:3000/v1/eNrLKCkpsNLXLy8v10tLLMpNKcov0EvOzwUAZxcItA==
+curl -v http://api.example.com:3000/v1/jb3ml7
 ```
 
 ```
- TCP_NODELAY set
+*   Trying 127.0.0.1...
+* TCP_NODELAY set
 * Connected to api.example.com (127.0.0.1) port 3000 (#0)
-> GET /v1/eNrLKCkpsNLXLy8v10tLLMpNKcov0EvOzwUAZxcItA== HTTP/1.1
+> GET /v1/jb3ml7 HTTP/1.1
 > Host: api.example.com:3000
 > User-Agent: curl/7.54.0
 > Accept: */*
@@ -134,14 +135,15 @@ curl -v http://api.example.com:3000/v1/eNrLKCkpsNLXLy8v10tLLMpNKcov0EvOzwUAZxcIt
 < Location: http://www.farmdrop.com
 < Content-Type: text/html; charset=utf-8
 < Cache-Control: no-cache
-< X-Request-Id: 5e380582-0861-4157-950d-92466a2b5bfd
-< X-Runtime: 0.004463
+< X-Request-Id: 8913877c-9ef9-4094-a2c3-aee847d882a9
+< X-Runtime: 0.028914
 < Server: WEBrick/1.3.1 (Ruby/2.3.1/2016-04-26)
-< Date: Wed, 24 Oct 2018 18:55:37 GMT
+< Date: Tue, 30 Oct 2018 14:56:42 GMT
 < Content-Length: 89
 < Connection: Keep-Alive
 <
 * Connection #0 to host api.example.com left intact
+szymon@MacBook-Pro-Szymon ~/Documents/projects/intervi
 ```
 
 ### Read not existing entry
