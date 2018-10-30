@@ -3,11 +3,14 @@
 require 'rails_helper'
 
 describe API::V1::HomesController do
-  let(:short_url) { 'eNrLKCkpsNLXLy8v10vPz0_PSdVLzs8FAFWyB9Y=' }
+  let(:short_url) { 'cu3w84' }
 
   describe 'POST root route' do
     describe 'when valid' do
-      before { post :create, url: 'www.google.com' }
+      before do
+        allow_any_instance_of(Url).to receive(:short_url).and_return(short_url)
+        post :create, url: 'www.google.com'
+      end
 
       it 'is created' do
         expect(response.status).to eql 201 # created

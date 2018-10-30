@@ -8,7 +8,7 @@ module API::V1
       if long_url.present?
         url = Url.new(long_url.strip)
         render json: {
-          short_url: url.encoded_data,
+          short_url: url.short_url,
           url: url.url_original
         }, status: 201
       else
